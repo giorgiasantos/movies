@@ -1,33 +1,51 @@
 package com.example.movies.models;
 
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSecondaryPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
+
+@DynamoDbBean
 public class Movies {
-    private String idMovie;
+    private Integer id;
     private String title;
     private String director;
+    private int year;
     private int minutes;
-    private double rate;
-    private boolean status;
+    private Double rate;
+    private String status;
 
     public Movies() {
     }
 
-    public Movies(String idMovie, String title, String director, int minutes, double rate, boolean status) {
-        this.idMovie = idMovie;
+    public Movies(Integer id, String title, String director, int year, int minutes, String status) {
+        this.id = id;
         this.title = title;
         this.director = director;
+        this.year = year;
+        this.minutes = minutes;
+        this.status = status;
+    }
+
+    public Movies(Integer id, String title, String director, int year, int minutes, double rate, String status) {
+        this.id = id;
+        this.title = title;
+        this.director = director;
+        this.year = year;
         this.minutes = minutes;
         this.rate = rate;
         this.status = status;
     }
 
-    public String getIdMovie() {
-        return idMovie;
+    @DynamoDbPartitionKey
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdMovie(String idMovie) {
-        this.idMovie = idMovie;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
+    @DynamoDbSecondaryPartitionKey(indexNames = {"title-index"})
     public String getTitle() {
         return title;
     }
@@ -44,6 +62,14 @@ public class Movies {
         this.director = director;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public int getMinutes() {
         return minutes;
     }
@@ -52,19 +78,20 @@ public class Movies {
         this.minutes = minutes;
     }
 
-    public double getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(Double rate) {
         this.rate = rate;
     }
 
-    public boolean getStatus() {
+    @DynamoDbSortKey
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

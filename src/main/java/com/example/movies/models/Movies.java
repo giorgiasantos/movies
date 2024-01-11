@@ -94,4 +94,16 @@ public class Movies {
     public void setStatus(String status) {
         this.status = status;
     }
+    @Override
+    public String toString() {
+        return "Movie Details:\n" +
+                "\tID: " + id + "\n" +
+                "\tTitle: " + title + "\n" +
+                "\tDirector: " + director + "\n" +
+                "\tYear: " + year + "\n" +
+                "\tDuration: " + minutes + " minutes\n" +
+                "\tRating: " + rate + "\n" +
+                "\tStatus: " + status;
+    }
+
 }

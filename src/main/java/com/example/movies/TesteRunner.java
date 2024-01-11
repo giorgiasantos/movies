@@ -2,6 +2,8 @@
 //
 //import com.example.movies.models.Movies;
 //import com.example.movies.services.DynamoDBService;
+//import com.example.movies.services.SqsWatchedService;
+//import com.example.movies.services.SqsWatchlistService;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.stereotype.Component;
 //import org.slf4j.Logger;
@@ -9,9 +11,13 @@
 //@Component
 //public class TesteRunner implements CommandLineRunner {
 //    private final DynamoDBService dynamoDBService;
+//    private final SqsWatchlistService sqsWatchlistService;
+//    private final SqsWatchedService sqsWatchedService;
 //    private static final Logger logger = LoggerFactory.getLogger(TesteRunner.class);
-//    public TesteRunner(DynamoDBService dynamoDBService) {
+//    public TesteRunner(DynamoDBService dynamoDBService, SqsWatchlistService sqsWatchlistService, SqsWatchedService sqsWatchedService) {
 //        this.dynamoDBService = dynamoDBService;
+//        this.sqsWatchlistService = sqsWatchlistService;
+//        this.sqsWatchedService = sqsWatchedService;
 //    }
 //
 //    @Override
@@ -28,9 +34,13 @@
 ////            dynamoDBService.getAllMovies();
 ////            dynamoDBService.findMovieById(1);
 ////            dynamoDBService.findMovieByTitle("Killers of The Flower Moon");
-//            logger.info("The movie was added in the database.");
+////            sqsWatchlistService.sendToQueue(movie);
+//            sqsWatchedService.sendMessage(movie);
+//            logger.info("The movie was send to queue.");
+////            logger.info("The movie was added in the database.");
 //        }catch (Exception e){
-//            logger.error("Movie failed to be added in database." , e);
+////            logger.error("Movie failed to be added in database." , e);
+//            logger.error("The movie failed to be send to queue.");
 //        }
 //
 //    }

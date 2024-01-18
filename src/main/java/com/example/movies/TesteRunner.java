@@ -4,6 +4,7 @@
 //import com.example.movies.services.DynamoDBService;
 //import com.example.movies.services.SqsWatchedService;
 //import com.example.movies.services.SqsWatchlistService;
+//import jakarta.annotation.PostConstruct;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.stereotype.Component;
 //import org.slf4j.Logger;
@@ -27,7 +28,7 @@
 //
 //    private void doSomethingWhenStartup() {
 //
-//        Movies movie = new Movies(1,"Killers of The Flower Moon","Martin Scorsese",2023,300,"watchlist");
+//        Movies movie = new Movies(1,"Killers of The Flower Moon","Martin Scorsese",2023,300,"watched");
 //
 //        try {
 ////            dynamoDBService.saveMovie(movie);
@@ -35,12 +36,14 @@
 ////            dynamoDBService.findMovieById(1);
 ////            dynamoDBService.findMovieByTitle("Killers of The Flower Moon");
 ////            sqsWatchlistService.sendToQueue(movie);
-//            sqsWatchedService.sendMessage(movie);
-//            logger.info("The movie was send to queue.");
-////            logger.info("The movie was added in the database.");
+////            dynamoDBService.update(movie);
+////            sqsWatchedService.sendMessage(movie);
+//            dynamoDBService.update2(1,movie);
+////            logger.info("The movie was send to queue.");
+//            logger.info("The movie was added in the database.");
 //        }catch (Exception e){
-////            logger.error("Movie failed to be added in database." , e);
-//            logger.error("The movie failed to be send to queue.");
+//            logger.error("Movie failed to be added in database." , e);
+////            logger.error("The movie failed to be send to queue.");
 //        }
 //
 //    }

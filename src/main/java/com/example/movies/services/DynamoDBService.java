@@ -65,4 +65,23 @@ public class DynamoDBService {
         return movies;
     }
 
+    public Movies update(Integer id, Movies movie) {
+        Movies updated = findMovieById(id);
+
+        if (updated == null) {
+            throw new MovieNotFoundException();
+        }
+
+        updated.setStatus(movie.getStatus());
+        updated.setRate(movie.getRate());
+        updated.setDirector(movie.getDirector());
+        updated.setMinutes(movie.getMinutes());
+        updated.setYear(movie.getYear());
+        updated.setImageUrl(movie.getImageUrl());
+
+        moviesTable.updateItem(updated);
+
+        return updated;
+    }
+
 }

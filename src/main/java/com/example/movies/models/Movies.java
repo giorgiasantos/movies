@@ -3,7 +3,6 @@ package com.example.movies.models;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSecondaryPartitionKey;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 @DynamoDbBean
 public class Movies {
@@ -14,6 +13,7 @@ public class Movies {
     private int minutes;
     private Double rate;
     private String status;
+    private String imageUrl;
 
     public Movies() {
     }
@@ -27,7 +27,7 @@ public class Movies {
         this.status = status;
     }
 
-    public Movies(Integer id, String title, String director, int year, int minutes, double rate, String status) {
+    public Movies(Integer id, String title, String director, int year, int minutes, Double rate, String status, String imageUrl) {
         this.id = id;
         this.title = title;
         this.director = director;
@@ -35,6 +35,7 @@ public class Movies {
         this.minutes = minutes;
         this.rate = rate;
         this.status = status;
+        this.imageUrl = imageUrl;
     }
 
     @DynamoDbPartitionKey
@@ -86,7 +87,6 @@ public class Movies {
         this.rate = rate;
     }
 
-    @DynamoDbSortKey
     public String getStatus() {
         return status;
     }
@@ -94,6 +94,15 @@ public class Movies {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Movie Details:\n" +
